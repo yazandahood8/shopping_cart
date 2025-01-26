@@ -1,0 +1,59 @@
+/* Styling for the login form container */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Styling for the error message */
+  .error-message {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  
+  /* Styling for form groups */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Styling for input fields */
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Highlight the input fields with invalid data */
+  .is-invalid {
+    border-color: red;
+  }
+  
+  /* Styling for invalid feedback */
+  .invalid-feedback {
+    color: red;
+    font-size: 12px;
+  }
+  
+  /* Styling for submit button */
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+  }
+  
+  .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

@@ -1,0 +1,25 @@
+<nav class="menu">
+    <ul>
+      <!-- Show Products link -->
+      <li>
+        <a routerLink="/products" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          Show Products
+        </a>
+      </li>
+  
+      <!-- My Cart link -->
+      <li>
+        <a routerLink="/my-cart" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          My Cart
+        </a>
+      </li>
+  
+      <!-- Logout link -->
+      <li>
+        <a href="#" (click)="logout($event)">
+          Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+  

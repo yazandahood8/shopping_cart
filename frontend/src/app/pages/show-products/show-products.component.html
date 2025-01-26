@@ -1,0 +1,47 @@
+<app-menu></app-menu> <!-- Menu should appear here -->
+<router-outlet></router-outlet> <!-- Route content loads here -->
+
+<div class="products-container">
+  <div *ngFor="let product of products" class="product-card">
+    <img [src]="product.image" alt="{{ product.name }}" class="product-image" />
+    <div class="product-details">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.price | currency }}</p>
+      <select [(ngModel)]="product.quantity">
+        <option *ngFor="let quantity of quantities" [value]="quantity">{{ quantity }}</option>
+      </select>
+      <button (click)="addToCart(product._id, product.quantity)">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Modal for success/error messages -->
+<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="statusModalLabel">Status</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="modalMessage">Product successfully added to cart!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Styles for Success/Failure Modals -->
+<style>
+  .modal-success .modal-content {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  .modal-error .modal-content {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+</style>

@@ -1,0 +1,64 @@
+<div class="signup-container">
+  <h2>Sign Up</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="signup()">
+    
+    <!-- Name Input -->
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" type="text" class="form-control" formControlName="name">
+      
+      <!-- Name validation message -->
+      <div *ngIf="f['name'].touched && f['name'].invalid" class="invalid-feedback">
+        <div *ngIf="f['name'].errors?.['required']">Name is required.</div>
+      </div>
+    </div>
+
+    <!-- Email Input -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" class="form-control" formControlName="email">
+      
+      <!-- Email validation messages -->
+      <div *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
+        <div *ngIf="f['email'].errors?.['required']">Email is required.</div>
+        <div *ngIf="f['email'].errors?.['email']">Please enter a valid email.</div>
+      </div>
+    </div>
+    
+    <!-- Password Input -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" class="form-control" formControlName="password">
+      
+      <!-- Password validation messages -->
+      <div *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
+        <div *ngIf="f['password'].errors?.['required']">Password is required.</div>
+        <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long.</div>
+        <div *ngIf="f['password'].errors?.['pattern']">Password must contain at least one uppercase letter.</div>
+      </div>
+    </div>
+
+    <!-- Re-Password Input -->
+    <div class="form-group">
+      <label for="repassword">Confirm Password</label>
+      <input id="repassword" type="password" class="form-control" formControlName="repassword">
+      
+      <!-- Re-Password validation messages -->
+      <div *ngIf="f['repassword'].touched && f['repassword'].invalid" class="invalid-feedback">
+        <div *ngIf="f['repassword'].errors?.['required']">Confirm password is required.</div>
+        <div *ngIf="f['repassword'].errors?.['passwordMismatch']">Passwords do not match.</div>
+      </div>
+    </div>
+    
+    <!-- Error message -->
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+    
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid || isLoading">
+      <span *ngIf="isLoading">Loading...</span>
+      <span *ngIf="!isLoading">Sign Up</span>
+    </button>
+  </form>
+</div>
