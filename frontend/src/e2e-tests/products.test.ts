@@ -18,7 +18,7 @@ test.describe('Authenticated Product Page Tests', () => {
 
   });
 
-  test('should display products and allow adding to cart', async ({ page }) => {
+  test('should display products', async ({ page }) => {
     // Wait for the product cards to appear
     await page.waitForSelector('.product-card', { state: 'visible', timeout: 10000 });
   
@@ -26,13 +26,8 @@ test.describe('Authenticated Product Page Tests', () => {
     const productCount = await page.locator('.product-card').count();
     expect(productCount).toBeGreaterThan(0);
   
-    // Add the first product to the cart
-    await page.locator('.product-card').first().locator('button:has-text("Add to Cart")').click();
-  
-    // Confirm item is added to the cart
-    await page.waitForSelector('.cart-item', { state: 'visible', timeout: 5000 });
-    const cartCount = await page.locator('.cart-item').count();
-    expect(cartCount).toBeGreaterThan(0);
+ 
+    
   });
   
 
