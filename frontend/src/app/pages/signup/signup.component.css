@@ -1,170 +1,175 @@
-/* Global styles */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
+/* Shared CSS for both login and signup */
+:root {
+  --quantum-primary: #818cf8;
+  --quantum-dark: #0f172a;
+  --quantum-error: #f87171;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #0f172a, #1e293b);
+  padding: 2rem;
+}
+
+.holographic-title {
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #818cf8, #c4b5fd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 0 20px rgba(129, 140, 248, 0.3);
+}
+
+.quantum-form {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(30, 41, 59, 0.95);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(129, 140, 248, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.form-group {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.neon-input {
+  width: 100%;
+  padding: 1.25rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 0.75rem;
+  color: #f8fafc;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neon-input:focus {
+  border-color: var(--quantum-primary);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+  outline: none;
+}
+
+.floating-label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background: linear-gradient(180deg, rgba(30,41,59,1) 50%, rgba(30,41,59,0.9) 50%);
+  padding: 0 0.5rem;
+}
+
+.neon-input:focus ~ .floating-label,
+.neon-input:not(:placeholder-shown) ~ .floating-label {
+  transform: translateY(-190%);
+  font-size: 0.875rem;
+  color: #818cf8;
+}
+
+.global-error {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #818cf8;
+
+}
+.invalid-feedback {
+  color: var(--quantum-error);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  animation: errorShake 0.4s ease;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.quantum-btn {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-btn.primary {
+  background: linear-gradient(45deg, #6366f1, #818cf8);
+  color: white;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.quantum-btn.primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.4);
+}
+
+.quantum-btn.ghost {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.quantum-btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+}
+
+.quantum-spinner {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 0.75rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1rem;
   }
   
-  /* Container for the Sign Up form */
-  .signup-container {
-    max-width: 480px;
-    margin: 60px auto;
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    transition: transform 0.3s ease-in-out;
+  .quantum-form {
+    padding: 1.5rem;
   }
   
-  .signup-container:hover {
-    transform: translateY(-10px); /* Slight hover effect */
+  .holographic-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
-  
-  h2 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 30px;
-    font-weight: 600;
-  }
-  
-  /* Form styles */
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-size: 15px;
-    color: #444;
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-  
-  input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    color: #555;
-    box-sizing: border-box;
-    background-color: #f7f8fa;
-    transition: all 0.3s ease;
-  }
-  
-  input:focus {
-    border-color: #007bff;
-    outline: none;
-    background-color: #ffffff;
-  }
-  
-  input:invalid {
-    border-color: #e74c3c;
-  }
-  
-  input::placeholder {
-    color: #aaa;
-  }
-  
-  /* Error message */
-  .invalid-feedback {
-    font-size: 14px;
-    color: #e74c3c;
-    margin-top: 5px;
-  }
-  
-  .error-message {
-    color: #e74c3c;
-    font-size: 15px;
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  /* Submit button styles */
-  button {
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    padding: 14px 24px;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    width: 100%;
-  }
-  
-  button[disabled] {
-    background-color: #b0c4de;
-    cursor: not-allowed;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px); /* Button hover effect */
-  }
-  
-  button:active {
-    transform: translateY(1px); /* Button click effect */
-  }
-  
-  button span {
-    display: inline-block;
-  }
-  
-  /* Success and loading states */
-  button span.loading {
-    display: inline-block;
-    margin-right: 10px;
-    animation: loading 1s infinite linear;
-  }
-  
-  @keyframes loading {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  /* Make form responsive */
-  @media (max-width: 480px) {
-    .signup-container {
-      margin: 20px;
-      padding: 20px;
-    }
-  
-    h2 {
-      font-size: 20px;
-    }
-  
-    input {
-      padding: 12px;
-      font-size: 14px;
-    }
-  
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
-    }
-  }
-  
-  /* Focused state for inputs */
-  input:focus {
-    border-color: #007bff;
-    background-color: #ffffff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-  }
-  
+}

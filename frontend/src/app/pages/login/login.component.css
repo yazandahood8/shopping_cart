@@ -1,59 +1,163 @@
-/* Styling for the login form container */
+/* === Quantum Design System === */
 .login-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-  
-  /* Styling for the error message */
-  .error-message {
-    color: red;
-    margin-bottom: 10px;
-    font-size: 14px;
-  }
-  
-  /* Styling for form groups */
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  /* Styling for input fields */
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  /* Highlight the input fields with invalid data */
-  .is-invalid {
-    border-color: red;
-  }
-  
-  /* Styling for invalid feedback */
-  .invalid-feedback {
-    color: red;
-    font-size: 12px;
-  }
-  
-  /* Styling for submit button */
-  .btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    border: none;
-    color: white;
-    cursor: pointer;
-    width: 100%;
-    border-radius: 4px;
-  }
-  
-  .btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #0f172a, #1e293b);
+  padding: 2rem;
+}
+
+.holographic-title {
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #818cf8, #c4b5fd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 0 20px rgba(129, 140, 248, 0.3);
+}
+
+
+.global-error {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #818cf8;
+
+}
+.quantum-form {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(30, 41, 59, 0.95);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(129, 140, 248, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.form-group {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.neon-input {
+  width: 100%;
+  padding: 1.25rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 0.75rem;
+  color: #f8fafc;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neon-input:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+  outline: none;
+}
+
+.floating-label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background: linear-gradient(180deg, rgba(30,41,59,1) 50%, rgba(30,41,59,0.9) 50%);
+  padding: 0 0.5rem;
+}
+
+.neon-input:focus ~ .floating-label,
+.neon-input:not(:placeholder-shown) ~ .floating-label {
+  transform: translateY(-190%);
+  font-size: 0.875rem;
+  color: #818cf8;
+}
+
+.invalid-feedback {
+  color: #f87171;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  animation: errorShake 0.4s ease;
+}
+
+.global-error {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.quantum-btn {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-btn.primary {
+  background: linear-gradient(45deg, #6366f1, #818cf8);
+  color: white;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.quantum-btn.primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.4);
+}
+
+.quantum-btn.ghost {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.quantum-btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+}
+
+.quantum-spinner {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 0.75rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

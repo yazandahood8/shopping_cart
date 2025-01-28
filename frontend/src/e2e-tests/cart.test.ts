@@ -48,32 +48,33 @@ test.describe('Cart Functionality Tests', () => {
 
 });
 
-
   test('should remove product from cart', async ({ page }) => {
-    // Go to cart page
+    // Add item first
+    await page.locator('.product-card button').first().click();
     await page.goto('http://localhost:4200/my-cart');
-    await page.waitForTimeout(2000); // Wait to simulate processing time
-
-    // Remove the first product from the cart
-    await page.locator('.cart-item button:has-text("Remove")').first().click();
-
-    // Verify product was removed by checking the updated cart item count
-    await page.waitForTimeout(2000); // Allow time for the UI update
-    const updatedCartCount = await page.locator('.cart-item').count();
-    expect(updatedCartCount).toBeLessThan(1);
-    await page.waitForTimeout(2000); // Wait to simulate processing time
-
+    
+    // Remove item
+    const initialCount = await page.locator('.cart-item').count();
+    await page.locator('.remove-button').first().click();
+    
+    // Verify removal
+    await expect(page.locator('.cart-item')).toHaveCount(0);
+    
+    // Verify summary update
+    if (initialCount === 1) {
+      await expect(page.locator('.empty-state')).toBeVisible();
+    } else {
+      await expect(page.locator('.items-count')).toContainText(`0 items`);
+    }
   });
 
   test('should show empty cart message when no items are present', async ({ page }) => {
-    // Go to cart page
-    await page.waitForTimeout(2000); // Wait to simulate processing time
-
     await page.goto('http://localhost:4200/my-cart');
-
-    // Check for empty cart message visibility
-    await expect(page.locator('p:has-text("Your cart is empty.")')).toBeVisible();
-    await page.waitForTimeout(2000); // Wait to simulate processing time
-
+    
+    // Verify empty state components
+    await expect(page.locator('.empty-state')).toBeVisible();
+    await expect(page.locator('.empty-state h3')).toContainText('Your Cart is Empty');
+    await expect(page.locator('.empty-state p')).toContainText('Looks like you haven\'t added any items yet');
+    await expect(page.locator('.continue-shopping')).toBeVisible();
   });
 });

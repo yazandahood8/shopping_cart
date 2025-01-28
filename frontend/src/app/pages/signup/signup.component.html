@@ -1,64 +1,92 @@
-<div class="signup-container">
-  <h2>Sign Up</h2>
-  <form [formGroup]="signupForm" (ngSubmit)="signup()">
-    
+<!-- signup.component.html -->
+<div class="login-container">
+  <h2 class="holographic-title">Create Account</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="signup()" class="quantum-form">
     <!-- Name Input -->
     <div class="form-group">
-      <label for="name">Name</label>
-      <input id="name" type="text" class="form-control" formControlName="name">
+      <input 
+        id="name" 
+        type="text" 
+        class="neon-input"
+        formControlName="name"
+        placeholder=" "
+      >
+      <label for="name" class="floating-label">Name</label>
       
-      <!-- Name validation message -->
       <div *ngIf="f['name'].touched && f['name'].invalid" class="invalid-feedback">
-        <div *ngIf="f['name'].errors?.['required']">Name is required.</div>
+        <div *ngIf="f['name'].errors?.['required']">📛 Name is required</div>
       </div>
     </div>
 
     <!-- Email Input -->
     <div class="form-group">
-      <label for="email">Email</label>
-      <input id="email" type="email" class="form-control" formControlName="email">
+      <input 
+        id="email" 
+        type="email" 
+        class="neon-input"
+        formControlName="email"
+        placeholder=" "
+      >
+      <label for="email" class="floating-label">Email</label>
       
-      <!-- Email validation messages -->
       <div *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
-        <div *ngIf="f['email'].errors?.['required']">Email is required.</div>
-        <div *ngIf="f['email'].errors?.['email']">Please enter a valid email.</div>
-      </div>
-    </div>
-    
-    <!-- Password Input -->
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input id="password" type="password" class="form-control" formControlName="password">
-      
-      <!-- Password validation messages -->
-      <div *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
-        <div *ngIf="f['password'].errors?.['required']">Password is required.</div>
-        <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long.</div>
-        <div *ngIf="f['password'].errors?.['pattern']">Password must contain at least one uppercase letter.</div>
+        <div *ngIf="f['email'].errors?.['required']">📩 Email is required</div>
+        <div *ngIf="f['email'].errors?.['email']">⚠️ Please enter a valid email</div>
       </div>
     </div>
 
-    <!-- Re-Password Input -->
+    <!-- Password Input -->
     <div class="form-group">
-      <label for="repassword">Confirm Password</label>
-      <input id="repassword" type="password" class="form-control" formControlName="repassword">
+      <input
+        id="password"
+        type="password"
+        class="neon-input"
+        formControlName="password"
+        placeholder=" "
+      >
+      <label for="password" class="floating-label">Password</label>
       
-      <!-- Re-Password validation messages -->
-      <div *ngIf="f['repassword'].touched && f['repassword'].invalid" class="invalid-feedback">
-        <div *ngIf="f['repassword'].errors?.['required']">Confirm password is required.</div>
-        <div *ngIf="f['repassword'].errors?.['passwordMismatch']">Passwords do not match.</div>
+      <div *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
+        <div *ngIf="f['password'].errors?.['required']">🔒 Password is required</div>
+        <div *ngIf="f['password'].errors?.['minlength']">⚠️ Minimum 6 characters</div>
+        <div *ngIf="f['password'].errors?.['pattern']">⚠️ Needs one uppercase letter</div>
       </div>
     </div>
-    
-    <!-- Error message -->
-    <div *ngIf="errorMessage" class="error-message">
-      <p>{{ errorMessage }}</p>
+
+    <!-- Confirm Password Input -->
+    <div class="form-group">
+      <input
+        id="repassword"
+        type="password"
+        class="neon-input"
+        formControlName="repassword"
+        placeholder=" "
+      >
+      <label for="repassword" class="floating-label">Confirm Password</label>
+      
+      <div *ngIf="f['repassword'].touched && f['repassword'].invalid" class="invalid-feedback">
+        <div *ngIf="f['repassword'].errors?.['required']">🔒 Confirm password is required</div>
+        <div *ngIf="f['repassword'].errors?.['passwordMismatch']">⚠️ Passwords don't match</div>
+      </div>
+      
     </div>
-    
-    <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid || isLoading">
-      <span *ngIf="isLoading">Loading...</span>
-      <span *ngIf="!isLoading">Sign Up</span>
-    </button>
+
+    <div *ngIf="errorMessage" class="global-error">
+      ⚠️ {{ errorMessage }} 
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="button-group">
+      <button type="submit" class="quantum-btn primary" [disabled]="signupForm.invalid || isLoading">
+        <span class="btn-content">
+          <span *ngIf="isLoading" class="quantum-spinner"></span>
+          {{ isLoading ? 'Creating Account...' : 'Sign Up' }}
+        </span>
+      </button>
+      
+      <button type="button" class="quantum-btn ghost" (click)="goToLogin()">
+        Already have an account?
+      </button>
+    </div>
   </form>
 </div>

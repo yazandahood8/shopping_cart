@@ -1,26 +1,49 @@
-<!-- src/app/pages/home/show-products/show-products.component.html -->
+
 <app-menu></app-menu> <!-- Menu should appear here -->
 <router-outlet></router-outlet> <!-- Route content loads here -->
 
+<!-- HTML -->
 <div class="cart-container">
-  <h2>My Cart</h2>
-  <div *ngIf="cartProducts.length > 0; else emptyCart">
-    <div *ngFor="let product of cartProducts" class="cart-item">
-      <img [src]="product.image" alt="{{ product.name }}" class="product-image" />
-      <div class="product-details">
-        <h3>{{ product.name }}</h3>
-        <p>Price: ${{ product.price }}</p>
-        <p>Quantity: {{ product.quantity }}</p>
-      </div>
-      <button (click)="removeFromCart(product._id)">Remove</button>
+  <div class="cart-header">
+    <h2 class="cart-title">Your Shopping Cart</h2>
+    <div class="cart-summary">
+      <span class="items-count">{{ cartProducts.length }} items</span>
+      <span class="total-price">Total: {{ calculateTotal() | currency }}</span>
     </div>
+  </div>
 
-    <div class="cart-total">
-      <h3>Total: ${{ calculateTotal() }}</h3>
+  <div *ngIf="cartProducts.length > 0; else emptyCart" class="cart-content">
+    <div *ngFor="let product of cartProducts" class="cart-item">
+      <div class="item-content">
+        <img [src]="product.image" alt="{{ product.name }}" class="product-image" />
+        <div class="product-info">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <div class="price-quantity">
+            <p class="product-price">{{ product.price | currency }}</p>
+            <div class="quantity-control">
+              <span class="quantity-label">Qty:</span>
+              <span class="quantity-value">{{ product.quantity }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="remove-button" (click)="removeFromCart(product._id)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/>
+        </svg>
+      </button>
     </div>
   </div>
 
   <ng-template #emptyCart>
-    <p>Your cart is empty.</p>
+    <div class="empty-state">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/>
+        <path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H5.1"/>
+      </svg>
+      <h3>Your Cart is Empty</h3>
+      <p>Looks like you haven't added any items yet</p>
+      <a routerLink="/products" class="continue-shopping">Continue Shopping →</a>
+    </div>
   </ng-template>
 </div>

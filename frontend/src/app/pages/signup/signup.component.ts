@@ -70,5 +70,7 @@ export class SignupComponent {
       }
     );
   }
-  
+  goToLogin(): void {
+    this.router.navigate(['/login']);
+  }
 }

@@ -20,8 +20,8 @@ test('Test 1: Should show error when email already exists', async ({ page }) => 
   await page.waitForTimeout(3000);
 
   // Check if the error message appears
-  await page.waitForSelector('.error-message', { state: 'visible' });
-  const emailError = page.locator('.error-message');
+  await page.waitForSelector('.global-error', { state: 'visible' });
+  const emailError = page.locator('.global-error');
   await expect(emailError).toContainText('Email already exists');
 });
 

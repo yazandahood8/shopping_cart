@@ -36,7 +36,7 @@ test.describe('Login Page Tests', () => {
 
     // Wait for the error message to appear
    
-     await expect(page.locator('.error-message')).toHaveText('Login failed. Please check your credentials and try again.');
+     await expect(page.locator('.global-error')).toHaveText('⚠️ Please check email or password');
      await page.waitForTimeout(2000); // Wait to simulate processing time
 
     });

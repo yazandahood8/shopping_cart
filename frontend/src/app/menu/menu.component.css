@@ -1,30 +1,100 @@
 .menu {
-    background-color: #333;
-    padding: 10px 0;
-  }
-  
+  background-color: #ffffff;
+  padding: 1rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.menu ul li {
+  margin: 0 25px;
+  position: relative;
+}
+
+.menu ul li a {
+  color: #2d3436;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 12px 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+}
+
+.menu ul li a:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+.menu ul li a::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: #0984e3;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.menu ul li a:hover::before {
+  width: 60%;
+}
+
+.menu ul li a.active {
+  color: #0984e3;
+  font-weight: 600;
+}
+
+.menu ul li a.active::before {
+  width: 60%;
+  background: #0984e3;
+}
+
+/* Logout specific styling */
+.menu ul li:last-child a {
+  color: #e74c3c;
+}
+
+.menu ul li:last-child a:hover {
+  background-color: #fdedec;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
   .menu ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
+    justify-content: space-around;
+    padding: 0 1rem;
   }
   
   .menu ul li {
-    margin: 0 15px;
+    margin: 0 8px;
   }
   
   .menu ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px 20px;
-    transition: 0.3s;
+    padding: 10px 15px;
+    font-size: 0.9rem;
   }
-  
-  .menu ul li a:hover {
-    background-color: #555;
-    border-radius: 5px;
-  }
-  
+}
+
+/* Focus states for accessibility */
+.menu ul li a:focus-visible {
+  outline: 2px solid #0984e3;
+  outline-offset: 2px;
+}

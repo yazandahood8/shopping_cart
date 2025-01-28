@@ -1,45 +1,58 @@
 <div class="login-container">
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+  <h2 class="holographic-title">Welcome Back</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="quantum-form">
       <!-- Email Input -->
       <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" class="form-control" formControlName="email">
-        
-        <!-- Email validation messages -->
-        <div *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
-          <div *ngIf="f['email'].errors?.['required']">Email is required.</div>
-          <div *ngIf="f['email'].errors?.['email']">Please enter a valid email.</div>
-        </div>
+          <input 
+              id="email" 
+              type="email" 
+              class="neon-input"
+              formControlName="email"
+              placeholder=" "
+          >
+          <label for="email" class="floating-label">Email</label>
+          
+          <div *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
+              <div *ngIf="f['email'].errors?.['required']">📩 Email is required</div>
+              <div *ngIf="f['email'].errors?.['email']">⚠️ Please enter a valid email</div>
+          </div>
       </div>
-      
+
       <!-- Password Input -->
       <div class="form-group">
-        <label for="password">Password</label>
-        <input id="password" type="password" class="form-control" formControlName="password">
-        
-        <!-- Password validation message -->
-        <div *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
-          <div *ngIf="f['password'].errors?.['required']">Password is required.</div>
-          <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long.</div>
-        </div>
+          <input
+              id="password"
+              type="password"
+              class="neon-input"
+              formControlName="password"
+              placeholder=" "
+          >
+          <label for="password" class="floating-label">Password</label>
+          
+          <div *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
+              <div *ngIf="f['password'].errors?.['required']">🔒 Password is required</div>
+              <div *ngIf="f['password'].errors?.['minlength']">⚠️ Minimum 6 characters</div>
+          </div>
+             <!-- Global Error Message -->
+         
+
       </div>
-      
-      <!-- Error message -->
-      <div *ngIf="errorMessage" class="error-message">
-        <p>{{ errorMessage }}</p>
+
+      <div *ngIf="errorMessage" class="global-error">
+        ⚠️ {{ errorMessage }} 
       </div>
-  
-      <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || isLoading">
-        <span *ngIf="isLoading">Loading...</span>
-        <span *ngIf="!isLoading">Login</span>
-      </button>
-  
-      <!-- Sign Up Button -->
-      <button type="button" class="btn btn-secondary" (click)="goToSignUp()">
-        Sign Up
-      </button>
-    </form>
-  </div>
-  
+      <!-- Action Buttons -->
+      <div class="button-group">
+          <button type="submit" class="quantum-btn primary" [disabled]="loginForm.invalid || isLoading">
+              <span class="btn-content">
+                  <span *ngIf="isLoading" class="quantum-spinner"></span>
+                  {{ isLoading ? 'Authenticating...' : 'Login' }}
+              </span>
+          </button>
+          
+          <button type="button" class="quantum-btn ghost" (click)="goToSignUp()">
+              Create Account
+          </button>
+      </div>
+  </form>
+</div>
