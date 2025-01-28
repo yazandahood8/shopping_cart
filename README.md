@@ -28,7 +28,7 @@ A full-stack e-commerce application with Angular frontend, Node.js/Express backe
 ## 🛠 Tech Stack
 
 *Frontend*:
-- Angular 15+
+- Angular 17+
 - TypeScript
 - RxJS
 - Angular Material UI
@@ -58,8 +58,8 @@ A full-stack e-commerce application with Angular frontend, Node.js/Express backe
 
 #### 1. Clone the repository:
 bash
-git clone https://github.com/yourusername/ecommerce-platform.git
-cd ecommerce-platform
+git clone https://github.com/yazandahood8/shopping_cart.git
+cd shopping_cart
 
 
 #### 2. Backend Setup:
@@ -114,21 +114,25 @@ Access UI at http://localhost:4200
 ### Authentication Endpoints
 | Endpoint            | Method | Description              | Request Body                |
 |---------------------|--------|--------------------------|-----------------------------|
-| /api/auth/signup | POST   | Register new user       | { name, email, password } |
-| /api/auth/login  | POST   | Login existing user     | { email, password }       |
+| /api/users/signup | POST   | Register new user       | { name, email, password } |
+| /api/users/signin  | POST   | Login existing user     | { email, password }       |
+| /api/users/signin/:userId  | POST   | getUser     |       |
+
 
 ### Product Endpoints
 | Endpoint         | Method | Description              |
 |-----------------|--------|--------------------------|
-| /api/products | GET    | Get all products         |
+| /api/products/getProducts | GET    | Get all products         |
+| /api/products/add   | POST   | Add item to products        | { productId, quantity, image , price , quintity }  |
+
 | /api/products/:id | GET  | Get single product by ID |
 
 ### Cart Endpoints
 | Endpoint       | Method | Description              | Request Body               |
 |---------------|--------|--------------------------|----------------------------|
 | /api/cart   | GET    | Get user's cart         | Requires JWT token        |
-| /api/cart   | POST   | Add item to cart        | { productId, quantity }  |
-| /api/cart/:id | DELETE | Remove item from cart   | Requires JWT token        |
+| /api/addToCart   | POST   | Add item to cart        | { productId, quantity }  |
+| /api/removeFromCart/| DELETE | Remove item from cart   | { productId, quantity,email }        |
 
 ---
 
