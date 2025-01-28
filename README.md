@@ -1,6 +1,6 @@
 # Shopping Cart
 
-![Project Demo](https://github.com/yazandahood8/shopping_cart/blob/main/gif.gif))  
+![Project Demo](https://github.com/yazandahood8/shopping_cart/blob/main/gif.gif)
 
 A full-stack e-commerce application with Angular frontend, Node.js/Express backend, and MongoDB database. Implements user authentication, product catalog, and shopping cart functionality.
 
