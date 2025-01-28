@@ -1,4 +1,4 @@
-# E-Commerce Platform
+# Shopping Cart
 
 ![Project Demo](https://via.placeholder.com/800x400?text=Demo+Preview)  
 Replace with actual demo GIF/video
